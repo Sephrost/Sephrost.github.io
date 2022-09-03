@@ -1,8 +1,31 @@
 <html>
     <body>
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropdown-btn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="#">Carico</a>
+                </div>
+            </div>
+                
+            <img src="images/logo.png" alt="Logo">
+        </div>
         <div id="demo"></div>
+        <div class="infra-text">Capacitá di trasporto</div>
+        <div class="Input">
+            <input type="text" name="strength" placeholder="Forza" id="strength-input" class="Input-text">
+        </div> 
+        <!-- Here goes the select-->
+        <div id="size-select"></div>
+        <div id="input">
+            <button class="input-button" onclick="myFunction()">Invia</button>
+        </div>
+        <div id="carry-cap-div"></div>
     </body>
     <head>
+        <title> D&D ToolBoox</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <script src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
