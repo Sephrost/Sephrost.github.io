@@ -1,0 +1,71 @@
+<html>
+    <body>
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropdown-btn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="index.html">Carico</a>
+                    <a href="#">Dice Roller</a>
+                </div>
+            </div>
+                
+            <img src="images/logo.png" alt="Logo">
+        </div>
+        <div class="infra-text">D4 da tirare</div>
+            <input type="text" id="d4">
+        <div class="infra-text">D6 da tirare</div>
+            <input type="text" id="d6">
+        <div class="infra-text">D8 da tirare</div>
+            <input type="text" id="d8">
+        <div class="infra-text">D10 da tirare</div>
+            <input type="text" id="d10">
+        <div class="infra-text">D12 da tirare</div>
+            <input type="text" id="d12">
+        <div class="infra-text">D20 da tirare</div>
+            <input type="text" id="d20">
+        <div class="infra-text">D100 da tirare</div>
+            <input type="text" id="d100">
+        <button class="input-button" onclick="throwDice()">Invia</button>
+        <div id="res-div"></div>
+    </body>
+    <head>
+        <title> D&D ToolBoox</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script type="text/javascript">
+
+            function throwDice(){
+
+                const faces = [4, 6, 8, 10, 12, 20, 100];
+                let dices = [
+                    document.getElementById("d4").value,
+                    document.getElementById("d6").value,
+                    document.getElementById("d8").value,
+                    document.getElementById("d10").value,
+                    document.getElementById("d12").value,
+                    document.getElementById("d20").value,
+                    document.getElementById("d100").value
+                ];
+
+
+                let result = 0;
+                for(let i = 0; i < dices.length; i++){
+                    if(dices[i] == "" || dices[i] == 0 || dices[i].match(/^[0-9]+$/) == null){
+                        continue;
+                    }
+                    for(let j = 0; j < dices[i]; j++){
+                            result += Math.floor(Math.random() * faces[i]) + 1;
+                        }
+                }
+                
+
+                let resultDiv = document.getElementById("res-div");
+                resultDiv.innerHTML = `<a class="res-text">${result}</a>`;
+            }
+        </script>
+    </head>
+</html>

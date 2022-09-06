@@ -118,18 +118,18 @@ select{
 
 .infra-text{
     margin : 8px 5%;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
 }
 
-#carry-cap-div{
+#res-div{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#carry-cap-text{
+#res-text{
   font-size: 16px;
   padding-top: 5px;
 }

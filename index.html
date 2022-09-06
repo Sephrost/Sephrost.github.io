@@ -6,6 +6,7 @@
                 <button class="dropdown-btn">Menu</button>
                 <div class="dropdown-content">
                     <a href="#">Carico</a>
+                    <a href="dice-roller.html">Dice Roller</a>
                 </div>
             </div>
                 
@@ -19,14 +20,73 @@
         <!-- Here goes the select-->
         <div id="size-select"></div>
         <div id="input">
-            <button class="input-button" onclick="myFunction()">Invia</button>
+            <button class="input-button" onclick="evalCargo()">Invia</button>
         </div>
-        <div id="carry-cap-div"></div>
+        <div id="res-div"></div>
     </body>
     <head>
         <title> D&D ToolBoox</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <script src="script.js"></script>
+        <script type="text/javascript">
+            const sizes = [
+                "Selezionare Taglia",
+                "Minuscola",
+                "Piccola",
+                "Media",
+                "Grande",
+                "Enorme",
+                "Mastodontica"
+            ]
+
+            const size = new Map([
+                ["Minuscola",0.5],
+                ["Piccola",1],
+                ["Media",1],
+                ["Grande",2],
+                ["Enorme",4],
+                ["Mastodontica",8]
+            ]);
+
+            // Races Select Setup
+            html = "<select name='Sizes' id='sizes'>";
+            for(const x of sizes){
+                if(x === "Selezionare Taglia"){
+                    html += `<option value="${x}" selected>${x}</option>`;
+                    continue;
+                }
+                html += `<option value ${x}>${x}</option>`;
+            }
+            html += "</select>";
+            document.getElementById("size-select").innerHTML = html;
+
+            function evalCargo(){
+
+                let ret;
+                let sizeL = document.getElementById("sizes");
+                let strength = document.getElementById("strength-input").value;
+                
+                if(!checkStrength(strength)||sizeL.selectedIndex===0){
+                    ret = "<a id='res-text'>Forza deve essere un numero</a>";
+                    document.getElementById("res-div").innerHTML = ret;
+                    return;
+                }
+
+                sizeL = sizeL.options[sizeL.selectedIndex].text;
+                let cargo = size.get(sizeL)*strength*7.5;
+                ret = `<a id="res-text">Puoi trasportare ${cargo} Kg&#10;&#13;</a>`;
+                ret += `<a id="res-text">Puoi spingere, trascinare o sollevare fino a ${cargo*2}</a>`;
+                ret += `<a id="res-text">Non sarai ingombrato con un carico fino a ${cargo*2.5}(-3mt)</a>`;
+                document.getElementById("res-div").innerHTML = ret;
+            }
+
+            function checkStrength(strength){
+                if(isNaN(strength) || strength == undefined || strength===""){
+                    return false;
+                }
+                return true;
+}
+        </script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 </html>
