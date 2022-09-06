@@ -45,8 +45,10 @@ function myFunction(){
     }
 
     sizeL = sizeL.options[sizeL.selectedIndex].text;
-    ret = `<a id="carry-cap-text">Puoi trasportare ${size.get(sizeL)*strength*7.5} Kg</a>`;
-
+    let cargo = size.get(sizeL)*strength*7.5;
+    ret = `<a id="carry-cap-text">Puoi trasportare ${cargo} Kg&#10;&#13;</a>`;
+    ret += `<a id="carry-cap-text">Puoi spingere, trascinare o sollevare fino a ${cargo*2}</a>`;
+    ret += `<a id="carry-cap-text">Non sarai ingombrato con un carico fino a ${cargo*2.5}(-3mt)</a>`;
     document.getElementById("carry-cap-div").innerHTML = ret;
 }
 

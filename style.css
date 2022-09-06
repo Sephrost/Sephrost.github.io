@@ -124,6 +124,12 @@ select{
 
 #carry-cap-div{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#carry-cap-text{
+  font-size: 16px;
+  padding-top: 5px;
 }
