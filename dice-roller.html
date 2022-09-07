@@ -13,19 +13,19 @@
             <img src="images/logo.png" alt="Logo">
         </div>
         <div class="infra-text">D4 da tirare</div>
-            <input type="text" id="d4">
+            <input type="text" id="d4" onkeyup='setValue(this);'>
         <div class="infra-text">D6 da tirare</div>
-            <input type="text" id="d6">
+            <input type="text" id="d6" onkeyup='setValue(this);'>
         <div class="infra-text">D8 da tirare</div>
-            <input type="text" id="d8">
+            <input type="text" id="d8" onkeyup='setValue(this);'>
         <div class="infra-text">D10 da tirare</div>
-            <input type="text" id="d10">
+            <input type="text" id="d10" onkeyup='setValue(this);'>
         <div class="infra-text">D12 da tirare</div>
-            <input type="text" id="d12">
+            <input type="text" id="d12" onkeyup='setValue(this);'>
         <div class="infra-text">D20 da tirare</div>
-            <input type="text" id="d20">
+            <input type="text" id="d20" onkeyup='setValue(this);'>
         <div class="infra-text">D100 da tirare</div>
-            <input type="text" id="d100">
+            <input type="text" id="d100" onkeyup='setValue(this);'>
         <button class="input-button" onclick="throwDice()">Invia</button>
         <div id="res-div"></div>
     </body>
@@ -33,10 +33,32 @@
         <title> D&D ToolBoox</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <script src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
         <script type="text/javascript">
+            // Onload read stored values
+            document.getElementById("d4").value = localStorage.getItem("d4");
+            document.getElementById("d6").value = localStorage.getItem("d6");
+            document.getElementById("d8").value = localStorage.getItem("d8");
+            document.getElementById("d10").value = localStorage.getItem("d10");
+            document.getElementById("d12").value = localStorage.getItem("d12");
+            document.getElementById("d20").value = localStorage.getItem("d20");
+            document.getElementById("d100").value = getValue("d100");
+
+            function setValue(e){
+
+                let id = e.id;
+                let value = e.value;
+                
+                localStorage.setItem(id, value);
+            }
+
+            function getValue(id){
+                if(!localStorage.getItem(id)){
+                    return "";
+                }
+                return localStorage.getItem(id);
+            }
 
             function throwDice(){
 
@@ -65,6 +87,26 @@
 
                 let resultDiv = document.getElementById("res-div");
                 resultDiv.innerHTML = `<a class="res-text">${result}</a>`;
+
+                cleanUpStorage();
+            }
+
+            function cleanUpStorage(){
+                localStorage.removeItem("d4");
+                localStorage.removeItem("d6");
+                localStorage.removeItem("d8");
+                localStorage.removeItem("d10");
+                localStorage.removeItem("d12");
+                localStorage.removeItem("d20");
+                localStorage.removeItem("d100");
+
+                document.getElementById("d4").value = "";
+                document.getElementById("d6").value = "";
+                document.getElementById("d8").value = "";
+                document.getElementById("d10").value = "";
+                document.getElementById("d12").value = "";
+                document.getElementById("d20").value = "";
+                document.getElementById("d100").value = "";
             }
         </script>
     </head>
